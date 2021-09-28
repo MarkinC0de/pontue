@@ -2,31 +2,33 @@
 
 namespace App\Http\Controllers\API;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Films;
 use App\Http\Resources\Films as FilmResource;
 
 class FilmsController extends BaseController
 {
-
     /**
-     * @return JsonResponse
+     * @return Application|ResponseFactory|Response
      */
-    public function index(): JsonResponse
+    public function index() : Response
     {
         $films = Films::all();
-        return $this->sendResponse(FilmResource::collection($films), 'Filmes encontrados.');
+        return response([ 'films' => FilmResource::collection($films), 'message' => 'Filmes encontrados.'], 200);
     }
 
 
     /**
      * @param Request $request
-     * @return JsonResponse
+     * @return Application|Response|ResponseFactory
      */
-    public function store(Request $request): JsonResponse
+    public function store(Request $request)
     {
         $input = $request->all();
         $validator = Validator::make($input, [
@@ -37,10 +39,11 @@ class FilmsController extends BaseController
             'country' => 'required'
         ]);
         if($validator->fails()){
-            return $this->sendError($validator->errors());
+            return response(['error' => $validator->errors(), 'Erro de validação.'],400);
         }
+
         $film = Films::create($input);
-        return $this->sendResponse(new FilmResource($film), 'Filme criado.');
+        return response(['films' => new FilmResource($film), 'message' => 'Filme registrado com sucesso.'], 201);
     }
 
 
@@ -54,7 +57,7 @@ class FilmsController extends BaseController
         if (is_null($film)) {
             return $this->sendError('Filme não encontrado');
         }
-        return $this->sendResponse(new FilmResource($film), 'Filme encontrado.');
+        return $this->sendResponse(new FilmResource($film), 'Filme encontrado.',);
     }
 
 

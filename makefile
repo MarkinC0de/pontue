@@ -52,21 +52,8 @@ migrate: ## Perform migrations
 rollback: ## Rollback migration
 	docker-compose exec pontue-nginx php artisan migrate:rollback
 
-backup: ## Export database
-	docker-compose exec pontue-mysql bash -c "/var/www/app/.scripts/backup.sh"
-
-password: ## Reset all passwords
-	docker-compose exec pontue-mysql bash -c "mysql --user=pontue04 --password=123 pontue04 -e \"update TBL_USUARIO set usu_password = md5('aq1sw2de3')\""
-
-##@ Composer
-
 install: ## Composer install dependencies
 	docker-compose exec pontue-nginx bash -c "su -c \"composer install\" application"
-
-autoload: ## Run the composer dump
-	docker-compose exec pontue-nginx bash -c "su -c \"composer dump-autoload\" application"
-
-##@ General commands
 
 route: ## List the routes of the app
 	docker-compose exec pontue-nginx php artisan routes:list

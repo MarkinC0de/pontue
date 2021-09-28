@@ -63,4 +63,16 @@ Opcionalmente você pode editar no `.env` os valores de `DB_HOST`,`DB_PORT`,`DB_
 
 As definições do docker vem por padrão com o dados do banco pré-configurados para o projeto, caso altere os valores não se esqueça de alterar no `.env`.
 
+## Como realizar testes via Postman
+Após executar a requisição de logar no usuário, será retornado este token:
+
+![image](https://user-images.githubusercontent.com/69984666/135175861-77b696bf-8875-47bc-8c8c-fee5b998becd.png)
+
+Copie o token e ao realizar a proxima requisição vai em *Authorization*, após isso vá em*Type* selecione a opção *Bearer Token* e no para finalizar cole o token copiado no campo que aparece a direita.
+
+![image](https://user-images.githubusercontent.com/69984666/135176245-a5fd6400-bb76-4926-9640-d64157942558.png)
+
+Após isso basta informar nas proximas requisições o token seguindo os mesmo passos e podera utilizar normalmente.
+
+<hr>
 ### ⚠️ Boa parte dos commits foram feitos pelo nome de usuario *nNetflix3* devida a uma falha na minha atenção *(MarkinC0de)* em não atualizar a conta registrada no terminal.

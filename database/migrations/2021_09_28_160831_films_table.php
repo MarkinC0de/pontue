@@ -18,7 +18,7 @@ class FilmsTable extends Migration
             $table->string('title');
             $table->text('synopsis');
             $table->string('director');
-            $table->date('release_date',);
+            $table->date('release_date');
             $table->string('country');
             $table->timestamps();
         });

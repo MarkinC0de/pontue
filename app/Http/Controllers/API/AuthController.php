@@ -23,10 +23,10 @@ class AuthController extends BaseController
             $success['token'] =  $authUser->createToken('MyAuthApp')->plainTextToken;
             $success['name'] =  $authUser->name;
 
-            return $this->sendResponse($success, 'User signed in');
+            return $this->sendResponse($success, 'Usuario logado.');
         }
         else{
-            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
+            return $this->sendError('Não autorizado.', ['error'=>'Erro com a requisição.'],401);
         }
     }
 
@@ -53,7 +53,7 @@ class AuthController extends BaseController
         $success['token'] =  $user->createToken('MyAuthApp')->plainTextToken;
         $success['name'] =  $user->name;
 
-        return $this->sendResponse($success, 'User created successfully.');
+        return $this->sendResponse($success, 'Usuario criado com sucesso.');
     }
 
 }

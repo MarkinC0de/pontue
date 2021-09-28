@@ -1,0 +1,92 @@
+version: '3.7'
+
+# Networks
+networks:
+  # Internal network
+  internal:
+    driver: bridge
+
+# Volumes
+volumes:
+  # MySQL volume
+  pontue-mysql_data:
+    driver: local
+  # Redis volume
+  pontue-redis_data:
+    driver: local
+
+# Services
+services:
+
+  # MySQL
+  pontue-mysql:
+    image: mysql:5.7
+    container_name: pontue-mysql
+    networks:
+      - internal
+    volumes:
+      - .:/var/www/app
+      - pontue-mysql_data:/var/lib/mysql
+    working_dir: /var/www/app
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=pontue
+      - MYSQL_USER=username
+      - MYSQL_PASSWORD=password
+    ports:
+      - 3306:3306
+
+  # Nginx
+  pontue-nginx:
+    image: webdevops/php-nginx:8.0
+    container_name: pontue-nginx
+    networks:
+      - internal
+    depends_on:
+      - pontue-mysql
+      - pontue-redis
+    links:
+      - pontue-mysql
+      - pontue-redis
+    volumes:
+      - .:/var/www/app
+    working_dir: /var/www/app
+    environment:
+      - WEB_DOCUMENT_ROOT=/var/www/app/public
+      - PHP_DATE_TIMEZONE=UTC
+      - PHP_DISPLAY_ERRORS=0
+      - WEB_DOCUMENT_INDEX=index.php
+      - PHP_MEMORY_LIMIT=4096M
+      - PHP_MAX_EXECUTION_TIME=86400
+      - PHP_POST_MAX_SIZE=500M
+      - PHP_UPLOAD_MAX_FILESIZE=500M
+
+    expose:
+      - 9090
+    ports:
+      - 8080:80
+
+  # Redis
+  pontue-redis:
+    image: redis:6
+    container_name: pontue-redis
+    command: --appendonly yes
+    networks:
+      - internal
+    volumes:
+      - pontue-redis_data:/data
+    ports:
+      - 6379:6379
+
+  # Queue SupervisorD
+  pontue-queue:
+    image: webdevops/php-nginx:8.0
+    container_name: pontue-queue
+    working_dir: /var/www/app
+    networks:
+      - internal
+    volumes:
+      - .:/var/www/app
+    depends_on:
+      - pontue-mysql
+      - pontue-redis

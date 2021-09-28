@@ -75,4 +75,6 @@ Copie o token e ao realizar a proxima requisição vai em *Authorization*, após
 Após isso basta informar nas proximas requisições o token seguindo os mesmo passos e podera utilizar normalmente.
 
 <hr>
+
+---
 ### ⚠️ Boa parte dos commits foram feitos pelo nome de usuario *nNetflix3* devida a uma falha na minha atenção *(MarkinC0de)* em não atualizar a conta registrada no terminal.

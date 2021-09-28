@@ -7,7 +7,7 @@
 help:  ## Display this help
 	@echo "Help"
 
-##@ Initialize work
+##@ Initialize Work
 
 init: ## Start a new develop environment
 	cp .env.example .env

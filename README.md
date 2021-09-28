@@ -19,11 +19,7 @@ composer install
 ```
 
 ```shell
-php artisan key:generate
-```
-
-```shell
-php artisan migrate:fresh
+php artisan migrate
 ```
 
 Neste ponto já é possível acessar o backend na URL que está configurada no seu ambiente.
@@ -47,15 +43,11 @@ docker-compose up -d
 ```
 
 ```shell
-docker-compose exec pontue-nginx bash "composer install"
+docker-compose exec pontue-nginx bash -c "su -c \"composer install\" application"
 ```
 
 ```shell
-docker-compose exec pontue-nginx bash "php artisan key:generate"
-```
-
-```shell
-docker-compose exec pontue-nginx bash "php artisan migrate"
+docker-compose exec pontue-nginx php artisan migrate
 ```
 
 Neste ponto, caso não tenha sido feita nenhuma modificação nos arquivos de configuração, é possível acessar a pagina inicial do Laravel na URL [http://localhost:8080](http://localhost:8080).

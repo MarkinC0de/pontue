@@ -19,10 +19,10 @@ class Films extends JsonResource
             'title' => $this->title,
             'synopsis'=> $this->synopsis,
             'director'=> $this->director,
-            'release_date' => $this->release_date,
+            'release_date' => $this->release_date->format('d/m/Y'),
             'country' => $this->country,
-            'created_at' => $this->created_at->format('m/d/Y'),
-            'updated_at' => $this->updated_at->format('m/d/Y')
+            'created_at' => $this->created_at->format('d/m/Y'),
+            'updated_at' => $this->updated_at->format('d/m/Y')
         ];
     }
 }

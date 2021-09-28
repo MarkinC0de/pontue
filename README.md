@@ -70,3 +70,5 @@ make init
 Opcionalmente você pode editar no `.env` os valores de `DB_HOST`,`DB_PORT`,`DB_DATABASE` , `DB_USERNAME` e `DB_PASSWORD` para definir: host, porta, nome do banco, nome de usuario no banco e a senha do banco.
 
 As definições do docker vem por padrão com o dados do banco pré-configurados para o projeto, caso altere os valores não se esqueça de alterar no `.env`.
+
+### ⚠️ Boa parte dos commits foram feitos pelo nome de usuario *nNetflix3* devida a uma falha na minha atenção *(MarkinC0de)* em não atualizar a conta registrada no terminal.

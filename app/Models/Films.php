@@ -15,4 +15,7 @@ class Films extends Model
         'release_date',
         'country'
     ];
+    protected $casts = [
+        'release_date' => 'date:d-m-Y'
+    ];
 }

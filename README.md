@@ -58,7 +58,7 @@ docker-compose exec pontue-nginx bash "php artisan key:generate"
 docker-compose exec pontue-nginx bash "php artisan migrate"
 ```
 
-Neste ponto, caso não tenha sido feita nenhuma modificação nos arquivos de configuração, é possível acessar o backend na URL [http://localhost:8080](http://localhost:8080).
+Neste ponto, caso não tenha sido feita nenhuma modificação nos arquivos de configuração, é possível acessar a pagina inicial do Laravel na URL [http://localhost:8080](http://localhost:8080).
 
 ---
 #### ⚙ Usando makefile

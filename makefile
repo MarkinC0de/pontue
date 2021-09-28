@@ -17,7 +17,8 @@ init: ## Start a new develop environment
 
 	@sleep 10
 
-	docker-compose exec pontue-nginx bash -c "su -c 'php artisan migrate' application"
+	docker-compose exec pontue-nginx bash "composer install"
+	docker-compose exec pontue-nginx bash "php artisan migrate"
 
 ##@ Docker actions
 

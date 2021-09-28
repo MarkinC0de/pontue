@@ -1,64 +1,72 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## 💻 Pontue Teste
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Uma API que realizar as ações de CRUD voltada para filmes.
 
-## About Laravel
+É possível configurar o ambiente de desenvolvimento do backend de três formas:
+  - [Local](#-local);
+  - [Docker](#-usando-docker);
+  - [Makefile](#-usando-makefile).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+#### 🏡 Local
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```shell
+cp .env.example .env
+```
+Opcionalmente você pode editar no `.env` os valores de `DB_HOST`,`DB_PORT`,`DB_DATABASE` , `DB_USERNAME` e `DB_PASSWORD` para definir: host, porta, nome do banco, nome de usuario no banco e a senha do banco.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```shell
+composer install
+```
 
-## Learning Laravel
+```shell
+php artisan key:generate
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```shell
+php artisan migrate:fresh
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Neste ponto já é possível acessar o backend na URL que está configurada no seu ambiente.
 
-## Laravel Sponsors
+---
+#### 🐋 Usando Docker
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+```shell
+cp .env.example .env
+```
+Opcionalmente você pode editar no `.env` os valores de `DB_HOST`,`DB_PORT`,`DB_DATABASE` , `DB_USERNAME` e `DB_PASSWORD` para definir: host, porta, nome do banco, nome de usuario no banco e a senha do banco.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+```shell
+cp docker-compose.yml.example docker-compose.yml
+```
+As definições do docker vem por padrão com o dados do banco pré-configurados para o projeto, caso altere os valores não se esqueça de alterar no `.env`.
 
-## Contributing
+```shell
+docker-compose up -d
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```shell
+docker-compose exec pontue-nginx bash "composer install"
+```
 
-## Code of Conduct
+```shell
+docker-compose exec pontue-nginx bash "php artisan key:generate"
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```shell
+docker-compose exec pontue-nginx bash "php artisan migrate"
+```
 
-## Security Vulnerabilities
+Neste ponto, caso não tenha sido feita nenhuma modificação nos arquivos de configuração, é possível acessar o backend na URL [http://localhost:8080](http://localhost:8080).
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
+#### ⚙ Usando makefile
 
-## License
+```shell
+make init
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Opcionalmente você pode editar no `.env` os valores de `DB_HOST`,`DB_PORT`,`DB_DATABASE` , `DB_USERNAME` e `DB_PASSWORD` para definir: host, porta, nome do banco, nome de usuario no banco e a senha do banco.
+
+As definições do docker vem por padrão com o dados do banco pré-configurados para o projeto, caso altere os valores não se esqueça de alterar no `.env`.

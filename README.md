@@ -77,4 +77,4 @@ Após isso basta informar nas proximas requisições o token seguindo os mesmo p
 <hr>
 
 ---
-### ⚠️ Boa parte dos commits foram feitos pelo nome de usuario *nNetflix3* devida a uma falha na minha atenção *(MarkinC0de)* em não atualizar a conta registrada no terminal.
+### ⚠️ Obs: Fiz alguns commit com uma conta que não utilizo mais (nNetflix3), mas sou o autor de todos os commits. Apenas esqueci de atualizar a conta registrada no terminal.
